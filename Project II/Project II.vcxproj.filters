@@ -18,8 +18,18 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+Menu-Module
+    <ClCompile Include="menu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClCompile Include="Welcome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+main
   </ItemGroup>
 </Project>

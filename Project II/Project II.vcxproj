@@ -129,7 +129,13 @@
   <ItemGroup>
     <ClCompile Include="billing.c" />
     <ClCompile Include="main.c" />
+Menu-Module
+    <ClCompile Include="menu.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="menu.h" />
     <ClCompile Include="Welcome.c" />
+main
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billing.h" />
