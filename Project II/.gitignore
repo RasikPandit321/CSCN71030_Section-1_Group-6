@@ -1,0 +1,9 @@
+# Ignore Visual Studio temporary files, build results, and logs
+.vs/
+*.vsidx
+*.VC.db
+*.VC.VC.opendb
+*.user
+*.suo
+Debug/
+Release/
