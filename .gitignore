@@ -1,0 +1,15 @@
+# Ignore Visual Studio cache and temporary files
+.vs/
+*.suo
+*.user
+*.cache
+*.ilk
+*.log
+*.pdb
+*.obj
+*.ipch
+*.tlog
+*.idb
+Debug/
+Release/
+x64/
