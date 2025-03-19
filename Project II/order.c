@@ -7,16 +7,15 @@ int addToOrder(Order orders[], int* orderCount, const char itemID[], int quantit
         return 0;
     }
 
-    // Search for the item in the menu
     for (int i = 0; i < menuSize; i++) {
         if (strcmp(menu[i].itemID, itemID) == 0) {
-            // Add the item to the order list
-            strcpy(orders[*orderCount].itemID, menu[i].itemID);
-            strcpy(orders[*orderCount].itemName, menu[i].itemName);
+            // Using strcpy_s for safer string copying
+            strcpy_s(orders[*orderCount].itemID, sizeof(orders[*orderCount].itemID), menu[i].itemID);
+            strcpy_s(orders[*orderCount].itemName, sizeof(orders[*orderCount].itemName), menu[i].itemName);
             orders[*orderCount].price = menu[i].price;
             orders[*orderCount].quantity = quantity;
 
-            (*orderCount)++;  // Increment order count
+            (*orderCount)++;
             printf("Item '%s' added successfully to order.\n", menu[i].itemName);
             return 1;
         }
@@ -26,23 +25,29 @@ int addToOrder(Order orders[], int* orderCount, const char itemID[], int quantit
     return 0;
 }
 
-// Example usage (for testing purposes)
-int main() {
-    // Sample menu items
-    MenuItem menu[MAX_ITEMS] = {
-        {"101", "Burger", 5.99},
-        {"102", "Pizza", 8.49},
-        {"103", "Pasta", 6.99},
-        {"104", "Salad", 4.99}
-    };
-
-    // Order list
-    Order orders[MAX_ORDERS];
-    int orderCount = 0;
-
-    // Test adding items
-    addToOrder(orders, &orderCount, "102", 2, menu, 4); // Adding Pizza
-    addToOrder(orders, &orderCount, "105", 1, menu, 4); // Item not in menu
-
+// Function to retrieve menu item details based on item ID
+int getMenuItemDetails(const MenuItem menu[], int menuSize, const char itemID[], char* itemName, float* price) {
+    for (int i = 0; i < menuSize; i++) {
+        if (strcmp(menu[i].itemID, itemID) == 0) {
+            // Using strcpy_s for safer string copying
+            strcpy_s(itemName, 50, menu[i].itemName);
+            *price = menu[i].price;
+            return 1;
+        }
+    }
     return 0;
+}
+
+// Function to apply a discount before sending to Billing Module
+void applyDiscount(Order orders[], int orderCount, char discountChoice) {
+    if (discountChoice == 'Y' || discountChoice == 'y') {
+        printf("Applying discount to the order...\n");
+        for (int i = 0; i < orderCount; i++) {
+            orders[i].price *= (float)0.9;
+        }
+        printf("Discount applied successfully!\n");
+    }
+    else {
+        printf("No discount applied.\n");
+    }
 }
