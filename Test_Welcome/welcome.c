@@ -35,7 +35,7 @@ int getUserSelection() {
 // Function to navigate based on user selection
 void navigateSelection(int selection)
 {
-    switch (selection) 
+    switch (selection)
     {
     case 1:
         printf("\nYou selected Dine-In. Redirecting to the menu...\n");
