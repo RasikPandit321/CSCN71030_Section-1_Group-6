@@ -44,7 +44,7 @@ void CreateMenuFileIfNotExists() {
 }
 
 
-int LoadMenuFromFile() {
+float LoadMenuFromFile() {
     CreateMenuFileIfNotExists(); // Ensure menu file exists before loading
     FILE* file = fopen(MENU_FILE, "r");
     if (!file) {
@@ -74,12 +74,12 @@ int LoadMenuFromFile() {
 
 
 // Save menu items to file
-int SaveMenuToFile() {
+float SaveMenuToFile() {
     FILE* file = fopen(MENU_FILE, "w");
     if (!file) return 0;
 
     for (int i = 0; i < menuItemCount; i++) {
-        fprintf(file, "%d,%s,%s,%.2f,%s\n", menu[i].itemID, menu[i].itemName,
+        fprintf(file, "%d,%s,%s,%lf,%s\n", menu[i].itemID, menu[i].itemName,
             menu[i].itemDescription, menu[i].itemPrice, menu[i].itemCategory);
     }
     fclose(file);
@@ -87,7 +87,7 @@ int SaveMenuToFile() {
 }
 
 // Add new menu item
-int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]) {
+float AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]) {
     if (menuItemCount >= MAX_MENU_ITEMS) return 0;
 
     int newID = (menuItemCount == 0) ? 1 : menu[menuItemCount - 1].itemID + 1;
@@ -102,7 +102,7 @@ int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char i
 }
 
 // Remove a menu item
-int RemoveMenuItem(int itemID) {
+float RemoveMenuItem(int itemID) {
     int found = 0;
     for (int i = 0; i < menuItemCount; i++) {
         if (menu[i].itemID == itemID) {
@@ -118,7 +118,7 @@ int RemoveMenuItem(int itemID) {
 }
 
 // Update a menu item
-int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]) {
+float UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]) {
     for (int i = 0; i < menuItemCount; i++) {
         if (menu[i].itemID == itemID) {
             strcpy(menu[i].itemName, itemName);
@@ -132,7 +132,7 @@ int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float it
 }
 
 // Retrieve menu items by category
-int GetMenuItem(char itemCategory[]) {
+float GetMenuItem(char itemCategory[]) {
     LoadMenuFromFile(); // Ensure latest data is loaded
     DisplayMenu();
     return 1;
@@ -147,7 +147,7 @@ void DisplayMenu() {
         int found = 0;
         for (int j = 0; j < menuItemCount; j++) {
             if (strcmp(menu[j].itemCategory, categories[i]) == 0) {
-                printf("ID: %d, Name: %s, Description: %s, Price: %.2f\n",
+                printf("ID: %d, Name: %s, Description: %s, Price: %lf\n",
                     menu[j].itemID, menu[j].itemName,
                     menu[j].itemDescription, menu[j].itemPrice);
                 found = 1;
@@ -158,17 +158,17 @@ void DisplayMenu() {
 }
 
 // Main function for testing
-int main() {
-    if (!LoadMenuFromFile()) {
-        printf("Error loading menu from file. Ensure the file exists and is formatted correctly.\n");
-        return 1;
-    }
-    printf("\n--- Menu Management System ---\n");
-    DisplayMenu();
-    AddMenuItem("Pizza", "Cheesy and delicious", 8.99, "Main Course");
-    UpdateMenuItem(2, "Veg Spring Rolls", "Crispy rolls with vegetables", 3.50, "Appetizers");
-    RemoveMenuItem(1);
-    printf("\nUpdated Menu:\n");
-    DisplayMenu();
-    return 0;
-}
+//int main() {
+//    if (!LoadMenuFromFile()) {
+//        printf("Error loading menu from file. Ensure the file exists and is formatted correctly.\n");
+//        return 1;
+//    }
+//    printf("\n--- Menu Management System ---\n");
+//    DisplayMenu();
+//    AddMenuItem("Pizza", "Cheesy and delicious", (float)8.99, "Main Course");
+//    UpdateMenuItem(2, "Veg Spring Rolls", "Crispy rolls with vegetables", 3.50, "Appetizers");
+//    RemoveMenuItem(1);
+//    printf("\nUpdated Menu:\n");
+//    DisplayMenu();
+//    return 0;
+//}

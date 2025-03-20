@@ -19,11 +19,11 @@ extern MenuItem menu[MAX_MENU_ITEMS];
 extern int menuItemCount;
 
 // Function declarations
-int LoadMenuFromFile();
-int SaveMenuToFile();
-int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
-int RemoveMenuItem(int itemID);
-int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
-int GetMenuItem(char itemCategory[]);
+float LoadMenuFromFile();
+float SaveMenuToFile();
+float AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
+float RemoveMenuItem(int itemID);
+float UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
+float GetMenuItem(char itemCategory[]);
 void DisplayMenu();
 //void PreloadMenuItems();
