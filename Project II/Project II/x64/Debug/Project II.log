@@ -1,2 +1,10 @@
-﻿  main.c
-  Project II.vcxproj -> C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project II\Project II\x64\Debug\Project II.exe
+﻿  menu.c
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(25,41): warning C4047: 'function': 'rsize_t' differs in levels of indirection from 'char *'
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(25,41): warning C4024: 'strcpy_s': different types for formal and actual parameter 2
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(25,2): error C2198: 'errno_t strcpy_s(char *,rsize_t,const char *)': too few arguments for call
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(26,48): warning C4047: 'function': 'rsize_t' differs in levels of indirection from 'char *'
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(26,48): warning C4024: 'strcpy_s': different types for formal and actual parameter 2
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(26,2): error C2198: 'errno_t strcpy_s(char *,rsize_t,const char *)': too few arguments for call
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(28,45): warning C4047: 'function': 'rsize_t' differs in levels of indirection from 'char *'
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(28,45): warning C4024: 'strcpy_s': different types for formal and actual parameter 2
+C:\Users\birendradeuba\source\repos\Team based software development\Project II\menu.c(28,2): error C2198: 'errno_t strcpy_s(char *,rsize_t,const char *)': too few arguments for call

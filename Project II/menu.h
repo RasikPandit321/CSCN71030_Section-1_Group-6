@@ -34,7 +34,8 @@ output: List of menu items with their name, description, and prices.
 return values: integer(1 for success and 0 for the failure)
 */
 
-#define MAX_MENU_ITEMS 90			// maximum amount of food items in the menu
+#define MAX_MENU_ITEMS 40			// maximum amount of food items in the menu
+#define MENU_FILE "menu.txt"		// file to store the menu items
 
 //structure to store the menu items
 typedef struct MenuItem {
@@ -42,12 +43,32 @@ typedef struct MenuItem {
 	char itemName[50];    // items name 
 	char itemDescription[250];	//items description 
 	float itemPrice;    // price for food items
-	char itemCategory[50];	//category for food items
+	char itemCategory[20];	//category for food items
 }MenuItem;
 
+
+//load the menu items from the file
+int LoadMenuFromFile();	
+
+//save the menu items to the file
+int SaveMenuToFile();	
 
 //Function to add a new menu item
 int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
 
 //Function to remove a menu item
 int RemoveMenuItem(int itemID);
+
+//Function to update a menu item
+int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
+
+//Function to get a menu item
+int GetMenuItem(char itemCategory[]);
+
+void DisplayMenu();	//display the menu items
+
+
+
+//Global menu storage
+extern MenuItem menu[MAX_MENU_ITEMS];
+extern int menuItemCount;  // Current count of menu items
