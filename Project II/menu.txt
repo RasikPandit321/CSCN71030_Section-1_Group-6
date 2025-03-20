@@ -8,3 +8,5 @@
 9,Pizza,Cheesy and delicious,8.990000,Main Course
 10,Pizza,Cheesy and delicious,8.990000,Main Course
 11,Pizza,Cheesy and delicious,8.990000,Main Course
+12,Pizza,Cheesy and delicious,8.990000,Main Course
+13,Pizza,Cheesy and delicious,8.990000,Main Course
