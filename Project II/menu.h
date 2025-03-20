@@ -1,74 +1,29 @@
 #pragma once
-#include <string.h>
 
-/*1. REQ - MENU - 001: This module shall allow the addition of food items with it names, description and price in their respective section.
-2. REQ - MENU - 002 : This module shall allow the removal of existing menu items based on a unique name.
-3. REQ - MENU - 003 : This module shall allow the modification of menu items and it’s details such as name, description, price and so on.
-4. REQ - MENU - 004 : The module shall store food items in a data structure like in a array structure for each section and also ensure that the list is easily accessible for querying, updating, and deleting.
-5. REQ - MENU - 005 : This module shall provide functionality to retrieve a list of items for each section when requested by other modules such as Order module.
-6. REQ - MENU - 006 : The module should allow searching for food items by their name or category such as drink or soup.
-*/
-/*Menu Module:
-Function: AddMenuItem()
-purpose: The purpose of this function is to add new items in a specific section in the menu.
-input: itemName(string), itemDescription(string), itemPrice(float), itemCatefory(string)
-output: None
-return values: integer(1 for success and 0 for the failure)
+#include <stdio.h>
 
-Function: RemoveMenuItem()
-purpose: remove the food items by it’s unique items id.
-input: itemID(Int)
-output: None
-return values: integer(1 for success and 0 for the failure)
+#define MAX_MENU_ITEMS 100   // Maximum number of menu items
+#define MENU_FILE "menu.txt" // File to store menu items
 
-Function: UpdateMenuItem()
-purpose: updating the food items name, descriptions, or prices of an exiting menu items.
-input: itemID(int), itemName(String), itemDescription(string), itemPrice(float).
-output: None
-return values: integer(1 for success and 0 for the failure)
+// Structure to store menu items
+typedef struct {
+    int itemID;                    // Unique ID for the item
+    char itemName[50];              // Name of the item
+    char itemDescription[250];      // Description of the item
+    float itemPrice;                // Price of the item
+    char itemCategory[20];          // Category of the item (Appetizers, Main Course, Desserts)
+} MenuItem;
 
-Function: GetMenuItem()
-purpose: it retrieve the whole menu or items from a specific section from the file.
-input: Category(string)
-output: List of menu items with their name, description, and prices.
-return values: integer(1 for success and 0 for the failure)
-*/
-
-#define MAX_MENU_ITEMS 40			// maximum amount of food items in the menu
-#define MENU_FILE "menu.txt"		// file to store the menu items
-
-//structure to store the menu items
-typedef struct MenuItem {
-	int itemID;		//unique id for items
-	char itemName[50];    // items name 
-	char itemDescription[250];	//items description 
-	float itemPrice;    // price for food items
-	char itemCategory[20];	//category for food items
-}MenuItem;
-
-
-//load the menu items from the file
-int LoadMenuFromFile();	
-
-//save the menu items to the file
-int SaveMenuToFile();	
-
-//Function to add a new menu item
-int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
-
-//Function to remove a menu item
-int RemoveMenuItem(int itemID);
-
-//Function to update a menu item
-int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
-
-//Function to get a menu item
-int GetMenuItem(char itemCategory[]);
-
-void DisplayMenu();	//display the menu items
-
-
-
-//Global menu storage
+// Global variables
 extern MenuItem menu[MAX_MENU_ITEMS];
-extern int menuItemCount;  // Current count of menu items
+extern int menuItemCount;
+
+// Function declarations
+int LoadMenuFromFile();
+int SaveMenuToFile();
+int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
+int RemoveMenuItem(int itemID);
+int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
+int GetMenuItem(char itemCategory[]);
+void DisplayMenu();
+//void PreloadMenuItems();
