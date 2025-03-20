@@ -1,2 +1,7 @@
-﻿  main.c
-  Project II.vcxproj -> C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project II\Project II\x64\Debug\Project II.exe
+﻿  billing.c
+  main.c
+C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project Repository\Project II\billing.c(18,50): warning C4244: 'function': conversion from 'int' to 'float', possible loss of data
+C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project Repository\Project II\billing.c(22,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project Repository\Project II\billing.c(32,44): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Project II.vcxproj -> C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project Repository\Project II\x64\Debug\Project II.exe
