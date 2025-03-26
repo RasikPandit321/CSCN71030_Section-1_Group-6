@@ -3,7 +3,9 @@
 #include <stdio.h>
 
 #define MAX_MENU_ITEMS 100   // Maximum number of menu items
-#define MENU_FILE "menu.txt" // File to store menu items
+#define MENU_FILE "menu.txt"
+
+
 
 // Structure to store menu items
 typedef struct {
@@ -26,4 +28,3 @@ int RemoveMenuItem(int itemID);
 int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
 int GetMenuItem(char itemCategory[]);
 void DisplayMenu();
-//void PreloadMenuItems();
