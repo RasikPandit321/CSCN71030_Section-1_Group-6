@@ -3,9 +3,9 @@
 
 // Function to generate the final bill
 Bill GenerateBill(OrderItem orderItems[], int itemCount) {
-    Bill bill;
+    Bill bill = { 0 };
     bill.itemCount = itemCount;
-    bill.subtotal = 0.0;
+    bill.subtotal = 0.0;  // Add 'f' to make it a float
 
     // Copy order items and calculate subtotal
     for (int i = 0; i < itemCount; i++) {
@@ -14,11 +14,11 @@ Bill GenerateBill(OrderItem orderItems[], int itemCount) {
     }
 
     // Apply a random discount (between 5% to 15%)
-    int discountPercentage = (rand() % 11) + 5; // Random value between 5% and 15%
+    double discountPercentage = (double)((rand() % 11) + 5);  // Cast to float
     bill.discount = ApplyDiscount(bill.subtotal, discountPercentage);
 
     // Apply tax after discount
-    float taxableAmount = bill.subtotal - bill.discount;
+    double taxableAmount = bill.subtotal - bill.discount;
     bill.tax = taxableAmount * TAX_RATE;
 
     // Calculate total amount
@@ -28,12 +28,12 @@ Bill GenerateBill(OrderItem orderItems[], int itemCount) {
 }
 
 // Function to apply discount
-float ApplyDiscount(float subtotal, float discountPercentage) {
-    return (subtotal * discountPercentage) / 100.0;
+double ApplyDiscount(double subtotal, double discountPercentage) {
+    return (subtotal * discountPercentage) / 100.0f;  // Add 'f' for float
 }
 
 // Function to process payment
-bool ProcessPayment(const char* paymentMethod, float amountPaid, float totalAmount) {
+bool ProcessPayment(const char* paymentMethod, double amountPaid, double totalAmount) {
     if (strcmp(paymentMethod, "cash") == 0 || strcmp(paymentMethod, "card") == 0) {
         printf("Payment method: %s\n", paymentMethod);
 
