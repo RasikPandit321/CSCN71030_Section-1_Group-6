@@ -1,5 +1,2 @@
-﻿  main.c
-  menu.c
-C:\Users\birendradeuba\source\repos\Last one\Project II\main.c(18,52): warning C4305: 'function': truncation from 'double' to 'float'
-  Generating Code...
+﻿  menu.c
   Project II.vcxproj -> C:\Users\birendradeuba\source\repos\Last one\Project II\x64\Debug\Project II.exe
