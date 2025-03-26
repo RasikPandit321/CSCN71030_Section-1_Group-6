@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="test_order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="order.c">
@@ -23,10 +23,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
+    <ClInclude Include="order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="order.h">
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
