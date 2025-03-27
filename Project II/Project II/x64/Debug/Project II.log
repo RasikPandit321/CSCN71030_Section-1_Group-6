@@ -4,6 +4,7 @@
   menu_customer.c
   menu_staff.c
   order.c
+  order_flow.c
   welcome.c
   Generating Code...
   Project II.vcxproj -> C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Integration\Project II\x64\Debug\Project II.exe

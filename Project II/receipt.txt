@@ -1,8 +1,9 @@
 ===== Receipt =====
-Onion Rings x1 - $7.99 each
+Veg Pulao x2 - $8.99 each
+Mango Lassi x43 - $4.99 each
 
-Subtotal: $15.49
-Discount: $1.12
-Tax (10%): $1.55
-Total: $15.92
+Subtotal: $232.55
+Discount: $13.95
+Tax (10%): $21.86
+Total: $240.46
 ===================

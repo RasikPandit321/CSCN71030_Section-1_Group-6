@@ -2,36 +2,39 @@
 
 #include <stdio.h>
 
-#define MAX_MENU_ITEMS 100   // Maximum number of menu items
+#define MAX_MENU_ITEMS 100
 
-// Separate files for each category
+// File names for category-specific menu storage
 #define FILE_APPETIZERS "appetizers.txt"
 #define FILE_MAIN_COURSE "main_course.txt"
 #define FILE_DESSERTS "desserts.txt"
 #define FILE_DRINKS "drinks.txt"
 
-// Structure to store menu items
+// Menu item structure
 typedef struct {
-    int itemID;                    // Unique ID for the item
-    char itemName[50];              // Name of the item
-    char itemDescription[250];      // Description of the item
-    float itemPrice;                // Price of the item
-    char itemCategory[20];          // Category of the item (Appetizers, Main Course, Desserts, Drinks)
+    int itemID;
+    char itemName[50];
+    char itemDescription[250];
+    float itemPrice;
+    char itemCategory[20];
 } MenuItem;
 
-// Global variables
+// Shared global menu array
 extern MenuItem menu[MAX_MENU_ITEMS];
 extern int menuItemCount;
 
-// Function declarations for customer menu operations
+// Shared customer and staff operations
 int LoadMenuFromFile(const char* filename);
 int SaveMenuToFile(const char* filename);
+int GetMenuItem(char itemCategory[]);
+void DisplayMenu(const char* filename);
+void CreateMenuFileIfNotExists();
+
+// Staff-only
 int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char itemCategory[]);
 int RemoveMenuItem(int itemID, const char* filename);
 int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float itemPrice, char itemCategory[], const char* filename);
-void DisplayMenu(const char* filename);
-int GetMenuItem(char itemCategory[]);
-void CreateMenuFileIfNotExists();
-
-// Function declarations for staff-specific menu operations
 const char* GetCategoryFile(const char* category);
+
+// Customer-only
+void DisplayCustomerMenu();

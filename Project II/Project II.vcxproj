@@ -133,6 +133,7 @@
     <ClCompile Include="menu_customer.c" />
     <ClCompile Include="menu_staff.c" />
     <ClCompile Include="order.c" />
+    <ClCompile Include="order_flow.c" />
     <ClCompile Include="welcome.c" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="order.h" />
+    <ClInclude Include="order_flow.h" />
     <ClInclude Include="welcome.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

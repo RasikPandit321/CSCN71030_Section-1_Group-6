@@ -1,45 +1,40 @@
 #include "billing.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include "menu.h"
 
-
-// Function to generate the final bill
+// Generate a bill with random discount and tax
 Bill GenerateBill(OrderItem orderItems[], int itemCount) {
     Bill bill = { 0 };
     bill.itemCount = itemCount;
-    bill.subtotal = 0.0;  // Add 'f' to make it a float
+    bill.subtotal = 0.0;
 
-    // Copy order items and calculate subtotal
     for (int i = 0; i < itemCount; i++) {
         bill.items[i] = orderItems[i];
         bill.subtotal += orderItems[i].price * orderItems[i].quantity;
     }
 
-    // Apply a random discount (between 5% to 15%)
-    double discountPercentage = (double)((rand() % 11) + 5);  // Cast to float
+    // Apply random discount between 5% and 15%
+    double discountPercentage = (rand() % 11) + 5;
     bill.discount = ApplyDiscount(bill.subtotal, discountPercentage);
 
-    // Apply tax after discount
-    double taxableAmount = bill.subtotal - bill.discount;
-    bill.tax = taxableAmount * TAX_RATE;
-
-    // Calculate total amount
-    bill.total = taxableAmount + bill.tax;
+    // Apply tax on discounted amount
+    double taxable = bill.subtotal - bill.discount;
+    bill.tax = taxable * TAX_RATE;
+    bill.total = taxable + bill.tax;
 
     return bill;
 }
 
-// Function to apply discount
+// Basic percentage discount calculator
 double ApplyDiscount(double subtotal, double discountPercentage) {
-    return (subtotal * discountPercentage) / 100.0f;  // Add 'f' for float
+    return (subtotal * discountPercentage) / 100.0;
 }
 
-
-// Function to process payment
+// Handle payment and check if sufficient
 bool ProcessPayment(const char* paymentMethod, double amountPaid, double totalAmount) {
     if (strcmp(paymentMethod, "cash") == 0 || strcmp(paymentMethod, "card") == 0) {
         printf("Payment method: %s\n", paymentMethod);
-
         if (amountPaid >= totalAmount) {
             printf("Payment successful! Change due: $%.2f\n", amountPaid - totalAmount);
             return true;
@@ -55,7 +50,7 @@ bool ProcessPayment(const char* paymentMethod, double amountPaid, double totalAm
     }
 }
 
-// Function to print the receipt
+// Print and save the receipt to file
 void PrintReceipt(Bill bill) {
     printf("\n===== Receipt =====\n");
     for (int i = 0; i < bill.itemCount; i++) {
@@ -67,7 +62,6 @@ void PrintReceipt(Bill bill) {
     printf("Total: $%.2f\n", bill.total);
     printf("===================\n");
 
-    // Save receipt to file
     FILE* file = fopen("receipt.txt", "w");
     if (file != NULL) {
         fprintf(file, "===== Receipt =====\n");

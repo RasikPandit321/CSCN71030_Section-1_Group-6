@@ -1,15 +1,13 @@
 #pragma once
 
-#include "order.h" 
+// Handles welcome and user navigation logic
+void displayWelcomeMessage();           // Displays welcome screen
+int assignRandomTable();                // Assigns a table randomly
+int getUserSelection();                 // Gets and validates input (1-4)
+void navigateSelection(int selection);  // Routes based on choice
+void runCustomerVersion();              // Launches customer side
+void runStaffVersion();                 // Launches staff interface
+char getYesNoInput(const char* prompt); // Y/N prompt
 
-// Function prototypes for welcome and navigation logic
-void displayWelcomeMessage();  // Displays welcome message and menu options
-int assignRandomTable();       // Assigns a table randomly for dine-in
-int getUserSelection();        // Gets and validates the user's selection
-void navigateSelection(int selection);  // Directs the user based on selection
-void runCustomerVersion();     // Entry point for customer mode
-void runStaffVersion();        // Entry point for staff mode
-void DisplayCustomerMenu();    // Displays menu browsing options
-char getYesNoInput(const char* prompt);  // Prompts user with Y/N and validates
-void openMenuModule(const char* serviceType); // Main menu/order logic
-int calculateDeliveryTime(Order* orders, int orderCount); // Delivery time estimate
+// Triggers main order process (now moved to order.c or a new file like order_process.c)
+void startCustomerOrder(const char* serviceType);
