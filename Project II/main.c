@@ -20,8 +20,8 @@ int main() {
         printf("3. Update a Menu Item\n");
         printf("4. Display Appetizers\n");
         printf("5. Display Main Course\n");
-        printf("6. Display Desserts\n");
-        printf("7. Display Drinks\n");
+        printf("6. Display Drinks\n");
+        printf("7. Display Desserts\n");
         printf("8. Search for Items by Category\n");
         printf("9. Exit\n");
         printf("Enter choice: ");
@@ -106,12 +106,13 @@ int main() {
             DisplayMenu(FILE_MAIN_COURSE);
             break;
         case 6:
-            // Display desserts
-            DisplayMenu(FILE_DESSERTS);
-            break;
-        case 7:
             // Display drinks
             DisplayMenu(FILE_DRINKS);
+            break;
+            
+        case 7:
+            // Display desserts
+            DisplayMenu(FILE_DESSERTS);
             break;
 
         case 8:
