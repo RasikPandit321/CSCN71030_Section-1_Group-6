@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,12 +13,35 @@
 #include "welcome.h"
 #include "order_flow.h"
 
+// Trim leading/trailing whitespace
+void trimWhitespace(char* str) {
+    char* start = str;
+    while (isspace((unsigned char)*start)) start++;
+
+    if (*start == 0) {
+        str[0] = '\0';
+        return;
+    }
+
+    char* end = start + strlen(start) - 1;
+    while (end > start && isspace((unsigned char)*end)) end--;
+
+    *(end + 1) = '\0';
+    memmove(str, start, strlen(start) + 1);
+}
+
+void flushInputBuffer() {
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
+}
+
 void startCustomerOrder(const char* serviceType) {
     CreateMenuFileIfNotExists();
 
     Order* orders = malloc(sizeof(Order) * MAX_ORDERS);
     MenuItem* allItems = malloc(sizeof(MenuItem) * MAX_MENU_ITEMS);
     OrderItem* finalItems = malloc(sizeof(OrderItem) * MAX_ITEMS);
+
     if (!orders || !allItems || !finalItems) {
         printf("Memory allocation failed.\n");
         free(orders); free(allItems); free(finalItems);
@@ -27,17 +52,15 @@ void startCustomerOrder(const char* serviceType) {
     char itemID[10];
     int menuChoice;
 
+    // Menu browsing
     do {
         DisplayCustomerMenu();
-
         char inputBuffer[20];
         printf("Enter your choice: ");
         fgets(inputBuffer, sizeof(inputBuffer), stdin);
         inputBuffer[strcspn(inputBuffer, "\n")] = 0;
 
-        char* endptr;
-        menuChoice = strtol(inputBuffer, &endptr, 10);
-        if (endptr == inputBuffer || *endptr != '\0' || menuChoice < 1 || menuChoice > 3) {
+        if (sscanf(inputBuffer, "%d", &menuChoice) != 1 || menuChoice < 1 || menuChoice > 3) {
             printf("Invalid input! Please enter a number between 1 and 3.\n");
             continue;
         }
@@ -50,10 +73,11 @@ void startCustomerOrder(const char* serviceType) {
             DisplayMenu(FILE_DESSERTS);
             break;
         case 2: {
-            char category[20];
+            char category[30];
             printf("Enter category to search (Appetizers, Main Course, Desserts, Drinks): ");
             fgets(category, sizeof(category), stdin);
             category[strcspn(category, "\n")] = 0;
+            trimWhitespace(category);
             if (!GetMenuItem(category)) {
                 printf("No items found in this category.\n");
             }
@@ -62,6 +86,7 @@ void startCustomerOrder(const char* serviceType) {
         }
     } while (menuChoice != 3);
 
+    // Load menu items
     int totalItems = 0;
     const char* files[] = { FILE_APPETIZERS, FILE_MAIN_COURSE, FILE_DESSERTS, FILE_DRINKS };
     for (int i = 0; i < 4; i++) {
@@ -71,19 +96,27 @@ void startCustomerOrder(const char* serviceType) {
         }
     }
 
+    // Ordering
     char more;
     do {
-        char buffer[20];
+        // Flush before prompting for new input
+        int ch;
+        while ((ch = getchar()) != '\n' && ch != EOF); // clear buffer after Y/N
 
         printf("Enter Item ID to add: ");
         fgets(itemID, sizeof(itemID), stdin);
         itemID[strcspn(itemID, "\n")] = 0;
 
-        printf("Enter Quantity: ");
-        fgets(buffer, sizeof(buffer), stdin);
-        quantity = atoi(buffer);
+        if (strlen(itemID) == 0) {
+            printf("Invalid Item ID.\n");
+            continue;
+        }
 
-        if (quantity <= 0) {
+        char quantityBuffer[10];
+        printf("Enter Quantity: ");
+        fgets(quantityBuffer, sizeof(quantityBuffer), stdin);
+
+        if (sscanf_s(quantityBuffer, "%d", &quantity) != 1 || quantity <= 0) {
             printf("Invalid quantity.\n");
         }
         else {
@@ -93,19 +126,14 @@ void startCustomerOrder(const char* serviceType) {
         more = getYesNoInput("Add more items?");
     } while (more == 'Y');
 
+
+    // Discount
     srand((unsigned)time(NULL));
     int luckyDiscount = rand() % 2;
-    if (luckyDiscount == 1) {
-        printf("Congratulations, you qualify for a discount!\n");
-        applyDiscount(orders, orderCount, 'Y');
-    }
-    else {
-        printf("Sorry, no discount this time.\n");
-        applyDiscount(orders, orderCount, 'N');
-    }
-
+    applyDiscount(orders, orderCount, luckyDiscount ? 'Y' : 'N');
     printOrderSummary(orders, orderCount);
 
+    // Prepare bill
     for (int i = 0; i < orderCount; i++) {
         strcpy_s(finalItems[i].name, sizeof(finalItems[i].name), orders[i].itemName);
         strcpy_s(finalItems[i].description, sizeof(finalItems[i].description), "");
@@ -127,12 +155,14 @@ void startCustomerOrder(const char* serviceType) {
 
     PrintReceipt(finalBill);
 
-    char method[10];
+    // Payment Method
+    char method[20];
     bool validMethod = false;
     while (!validMethod) {
         printf("Enter payment method (cash/card): ");
         fgets(method, sizeof(method), stdin);
         method[strcspn(method, "\n")] = 0;
+        trimWhitespace(method);
 
         if (strcmp(method, "cash") == 0 || strcmp(method, "card") == 0) {
             validMethod = true;
@@ -142,6 +172,7 @@ void startCustomerOrder(const char* serviceType) {
         }
     }
 
+    // Payment Amount
     char amountInput[20];
     bool validAmount = false;
     double amount = 0.0;
@@ -149,14 +180,11 @@ void startCustomerOrder(const char* serviceType) {
         printf("Enter amount paid: ");
         fgets(amountInput, sizeof(amountInput), stdin);
         amountInput[strcspn(amountInput, "\n")] = 0;
+
         char* endptr;
         amount = strtod(amountInput, &endptr);
-        if (endptr == amountInput || *endptr != '\0') {
-            printf("Invalid input! Please enter a valid number.\n");
-            continue;
-        }
-        if (amount < finalBill.total) {
-            printf("Insufficient amount! Please pay at least $%.2f\n", finalBill.total);
+        if (endptr == amountInput || *endptr != '\0' || amount < finalBill.total) {
+            printf("Invalid or insufficient amount! Please pay at least $%.2f\n", finalBill.total);
             continue;
         }
         validAmount = true;
@@ -164,6 +192,7 @@ void startCustomerOrder(const char* serviceType) {
 
     ProcessPayment(method, amount, finalBill.total);
 
+    // Cleanup
     free(orders);
     free(allItems);
     free(finalItems);

@@ -1,9 +1,10 @@
 ===== Receipt =====
-Veg Pulao x2 - $8.99 each
-Mango Lassi x43 - $4.99 each
+Aloo Gobi x3 - $12.99 each
+Masala Chai x4 - $2.99 each
+Masala Chai x5 - $2.99 each
 
-Subtotal: $232.55
-Discount: $13.95
-Tax (10%): $21.86
-Total: $240.46
+Subtotal: $65.88
+Discount: $7.25
+Tax (10%): $5.86
+Total: $64.50
 ===================
