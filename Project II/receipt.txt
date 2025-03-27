@@ -1,9 +1,8 @@
 ===== Receipt =====
-Onion Rings x2 - $7.99 each
-Samosa x4 - $4.99 each
+Pani Puri x1 - $7.99 each
 
-Subtotal: $35.94
-Discount: $2.52
-Tax (10%): $3.34
-Total: $36.77
+Subtotal: $15.49
+Discount: $1.12
+Tax (10%): $1.55
+Total: $15.92
 ===================
