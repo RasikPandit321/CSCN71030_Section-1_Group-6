@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <string.h>
-#include <ctype.h> // for toupper
+#include <ctype.h>
 #include "welcome.h"
 #include "menu.h"
 #include "order.h"
@@ -14,7 +14,7 @@
 
 bool tables[TOTAL_TABLES] = { false };
 
-void openMenuModule();
+void openMenuModule(const char* serviceType);
 
 void displayWelcomeMessage() {
     printf("=====================================\n");
@@ -67,7 +67,7 @@ int assignRandomTable() {
 
 void navigateSelection(int selection) {
     switch (selection) {
-    case 1: {
+    case 1:
         printf("\nYou selected Dine-In.\n");
         int tableNumber = assignRandomTable();
         if (tableNumber == -1) {
@@ -75,17 +75,16 @@ void navigateSelection(int selection) {
         }
         else {
             printf("Table %d has been assigned to you. Redirecting to the menu...\n", tableNumber);
-            openMenuModule();
+            openMenuModule("Dine-In");
         }
         break;
-    }
     case 2:
         printf("\nYou selected Pick-Up.\n");
-        openMenuModule();
+        openMenuModule("Pick-Up");
         break;
     case 3:
         printf("\nYou selected Delivery.\n");
-        openMenuModule();
+        openMenuModule("Delivery");
         break;
     case 4:
         printf("\nThank you for visiting Byte and Bite! Have a great day!\n");
@@ -93,24 +92,22 @@ void navigateSelection(int selection) {
     }
 }
 
-void openMenuModule() {
+
+
+void openMenuModule(const char* serviceType) {
     CreateMenuFileIfNotExists();
 
-    Order* orders = (Order*)malloc(sizeof(Order) * MAX_ORDERS);
-    MenuItem* allItems = (MenuItem*)malloc(sizeof(MenuItem) * MAX_MENU_ITEMS);
-    OrderItem* finalItems = (OrderItem*)malloc(sizeof(OrderItem) * MAX_ITEMS);
+    Order* orders = malloc(sizeof(Order) * MAX_ORDERS);
+    MenuItem* allItems = malloc(sizeof(MenuItem) * MAX_MENU_ITEMS);
+    OrderItem* finalItems = malloc(sizeof(OrderItem) * MAX_ITEMS);
     if (!orders || !allItems || !finalItems) {
         printf("Memory allocation failed.\n");
-        free(orders);
-        free(allItems);
-        free(finalItems);
+        free(orders); free(allItems); free(finalItems);
         return;
     }
 
-    int orderCount = 0;
+    int orderCount = 0, quantity, menuChoice;
     char itemID[10];
-    int quantity;
-    int menuChoice;
 
     do {
         printf("\n==== Customer Menu ====\n");
@@ -119,31 +116,22 @@ void openMenuModule() {
         printf("3. Order Items\n");
 
         char inputBuffer[20];
-        menuChoice = 0;
-
-        // ?? Flush buffer before reading
-        while (getchar() != '\n'); // flush remaining input
-
-        printf("Enter choice: ");
         fgets(inputBuffer, sizeof(inputBuffer), stdin);
         inputBuffer[strcspn(inputBuffer, "\n")] = 0;
 
         char* endptr;
-        menuChoice = (int)strtol(inputBuffer, &endptr, 10);
-
-        if (endptr == inputBuffer || *endptr != '\0') {
+        menuChoice = strtol(inputBuffer, &endptr, 10);
+        if (endptr == inputBuffer || *endptr != '\0' || menuChoice < 1 || menuChoice > 3) {
             printf("Invalid input! Please enter a number between 1 and 3.\n");
             continue;
         }
-
-
 
         switch (menuChoice) {
         case 1:
             DisplayMenu(FILE_APPETIZERS);
             DisplayMenu(FILE_MAIN_COURSE);
-            DisplayMenu(FILE_DESSERTS);
             DisplayMenu(FILE_DRINKS);
+            DisplayMenu(FILE_DESSERTS);
             break;
         case 2: {
             char category[20];
@@ -155,10 +143,6 @@ void openMenuModule() {
             }
             break;
         }
-        case 3:
-            break;
-        default:
-            printf("Invalid choice. Try again.\n");
         }
     } while (menuChoice != 3);
 
@@ -186,8 +170,16 @@ void openMenuModule() {
         more = getYesNoInput("Add more items?");
     } while (more == 'Y');
 
-    char discountChoice = getYesNoInput("Apply discount?");
-    applyDiscount(orders, orderCount, discountChoice);
+    srand((unsigned)time(NULL));
+    int luckyDiscount = rand() % 2;
+    if (luckyDiscount == 1) {
+        printf("Congratulations, you qualify for a discount!\n");
+        applyDiscount(orders, orderCount, 'Y');
+    }
+    else {
+        printf("Sorry, no discount this time.\n");
+        applyDiscount(orders, orderCount, 'N');
+    }
 
     printOrderSummary(orders, orderCount);
 
@@ -199,6 +191,17 @@ void openMenuModule() {
     }
 
     Bill finalBill = GenerateBill(finalItems, orderCount);
+
+    if (strcmp(serviceType, "Delivery") == 0) {
+        printf("\nDelivery Charge: $7.50 added.\n");
+        finalBill.subtotal += 7.50;
+        finalBill.tax = finalBill.subtotal * 0.10;
+        finalBill.total = finalBill.subtotal - finalBill.discount + finalBill.tax;
+
+        int deliveryTime = calculateDeliveryTime(orders, orderCount);
+        printf("Estimated Delivery Time: %d minutes\n", deliveryTime);
+    }
+
     PrintReceipt(finalBill);
 
     char method[10];

@@ -1,5 +1,7 @@
 #include "billing.h"
 #include <string.h>
+#include "menu.h"
+
 
 // Function to generate the final bill
 Bill GenerateBill(OrderItem orderItems[], int itemCount) {
@@ -31,6 +33,7 @@ Bill GenerateBill(OrderItem orderItems[], int itemCount) {
 double ApplyDiscount(double subtotal, double discountPercentage) {
     return (subtotal * discountPercentage) / 100.0f;  // Add 'f' for float
 }
+
 
 // Function to process payment
 bool ProcessPayment(const char* paymentMethod, double amountPaid, double totalAmount) {

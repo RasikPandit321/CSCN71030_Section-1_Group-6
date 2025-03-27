@@ -9,6 +9,7 @@ typedef struct {
     char itemName[50];
     float price;
     int quantity;
+    char category[30]; 
     char itemCategory[30];     // Needed for delivery time estimation
 } Order;
 
