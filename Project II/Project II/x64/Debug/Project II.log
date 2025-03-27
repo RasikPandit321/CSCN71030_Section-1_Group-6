@@ -1,10 +1,2 @@
 ﻿  billing.c
-  main.c
-  menu.c
-  menu_customer.c
-  menu_staff.c
-  order.c
-  order_flow.c
-  welcome.c
-  Generating Code...
   Project II.vcxproj -> C:\Users\birendradeuba\source\repos\Integrating branch\Project II\x64\Debug\Project II.exe
