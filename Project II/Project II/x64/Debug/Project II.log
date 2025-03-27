@@ -1,2 +1,9 @@
-﻿  order.c
-  Project II.vcxproj -> C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Project Repository\Project II\x64\Debug\Project II.exe
+﻿  billing.c
+  main.c
+  menu.c
+  menu_customer.c
+  menu_staff.c
+  order.c
+  welcome.c
+  Generating Code...
+  Project II.vcxproj -> C:\Users\DELL\OneDrive - University of Guelph\Desktop\Conestoga\Winter 25\05 - Project II\Integration\Project II\x64\Debug\Project II.exe

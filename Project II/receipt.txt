@@ -1,0 +1,8 @@
+===== Receipt =====
+Onion Rings x23 - $7.99 each
+
+Subtotal: $183.77
+Discount: $14.70
+Tax (10%): $16.91
+Total: $185.98
+===================

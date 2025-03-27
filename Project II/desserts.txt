@@ -1,0 +1,5 @@
+48,Gulab Jamun,Deep-fried milk dumplings in sugar syrup,5.00,Desserts
+49,Tiramisu,Italian coffee-flavored dessert,6.50,Desserts
+50,Cheesecake,Rich and creamy cheese dessert,6.00,Desserts
+51,Chocolate Mousse,Silky smooth chocolate mousse,5.50,Desserts
+52,Lemon Tart,Tart filled with lemon custard,4.99,Desserts
