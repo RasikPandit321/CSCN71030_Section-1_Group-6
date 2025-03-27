@@ -21,7 +21,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="welcome.c">
+    <ClCompile Include="..\Project II\Welcome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Welcome.h">
+    <ClInclude Include="..\Project II\Welcome.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
