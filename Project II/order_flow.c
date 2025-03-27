@@ -30,6 +30,7 @@ void trimWhitespace(char* str) {
     memmove(str, start, strlen(start) + 1);
 }
 
+// Flushes any remaining characters in the input buffer
 void flushInputBuffer() {
     int ch;
     while ((ch = getchar()) != '\n' && ch != EOF);
@@ -52,7 +53,7 @@ void startCustomerOrder(const char* serviceType) {
     char itemID[10];
     int menuChoice;
 
-    // Menu browsing
+    // --- CUSTOMER BROWSING MENU ---
     do {
         DisplayCustomerMenu();
         char inputBuffer[20];
@@ -86,7 +87,7 @@ void startCustomerOrder(const char* serviceType) {
         }
     } while (menuChoice != 3);
 
-    // Load menu items
+    // --- LOAD ALL MENU ITEMS ---
     int totalItems = 0;
     const char* files[] = { FILE_APPETIZERS, FILE_MAIN_COURSE, FILE_DESSERTS, FILE_DRINKS };
     for (int i = 0; i < 4; i++) {
@@ -96,16 +97,13 @@ void startCustomerOrder(const char* serviceType) {
         }
     }
 
-    // Ordering
+    // --- ORDERING LOOP ---
     char more;
     do {
-        // Flush before prompting for new input
-        int ch;
-        while ((ch = getchar()) != '\n' && ch != EOF); // clear buffer after Y/N
-
         printf("Enter Item ID to add: ");
         fgets(itemID, sizeof(itemID), stdin);
         itemID[strcspn(itemID, "\n")] = 0;
+        trimWhitespace(itemID);
 
         if (strlen(itemID) == 0) {
             printf("Invalid Item ID.\n");
@@ -116,7 +114,7 @@ void startCustomerOrder(const char* serviceType) {
         printf("Enter Quantity: ");
         fgets(quantityBuffer, sizeof(quantityBuffer), stdin);
 
-        if (sscanf_s(quantityBuffer, "%d", &quantity) != 1 || quantity <= 0) {
+        if (sscanf(quantityBuffer, "%d", &quantity) != 1 || quantity <= 0) {
             printf("Invalid quantity.\n");
         }
         else {
@@ -124,16 +122,16 @@ void startCustomerOrder(const char* serviceType) {
         }
 
         more = getYesNoInput("Add more items?");
+        flushInputBuffer();  // Flush only after yes/no input to ensure next prompt is clean
     } while (more == 'Y');
 
-
-    // Discount
+    // --- DISCOUNT + SUMMARY ---
     srand((unsigned)time(NULL));
     int luckyDiscount = rand() % 2;
     applyDiscount(orders, orderCount, luckyDiscount ? 'Y' : 'N');
     printOrderSummary(orders, orderCount);
 
-    // Prepare bill
+    // --- CREATE BILL OBJECT ---
     for (int i = 0; i < orderCount; i++) {
         strcpy_s(finalItems[i].name, sizeof(finalItems[i].name), orders[i].itemName);
         strcpy_s(finalItems[i].description, sizeof(finalItems[i].description), "");
@@ -155,7 +153,7 @@ void startCustomerOrder(const char* serviceType) {
 
     PrintReceipt(finalBill);
 
-    // Payment Method
+    // --- PAYMENT METHOD ---
     char method[20];
     bool validMethod = false;
     while (!validMethod) {
@@ -172,7 +170,7 @@ void startCustomerOrder(const char* serviceType) {
         }
     }
 
-    // Payment Amount
+    // --- PAYMENT AMOUNT ---
     char amountInput[20];
     bool validAmount = false;
     double amount = 0.0;
@@ -192,7 +190,7 @@ void startCustomerOrder(const char* serviceType) {
 
     ProcessPayment(method, amount, finalBill.total);
 
-    // Cleanup
+    // --- CLEANUP ---
     free(orders);
     free(allItems);
     free(finalItems);
