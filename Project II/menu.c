@@ -1,53 +1,44 @@
-#define _CRT_SECURE_NO_WARNINGS  
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "menu.h"
 
-// **Global variables** (shared across files)
+// Global variables
 MenuItem menu[MAX_MENU_ITEMS];
 int menuItemCount = 0;
 
-// Function to determine the file based on category
-const char* GetCategoryFile(const char* category) {
-    if (strcmp(category, "Appetizers") == 0) return FILE_APPETIZERS;
-    if (strcmp(category, "Main Course") == 0) return FILE_MAIN_COURSE;
-    if (strcmp(category, "Desserts") == 0) return FILE_DESSERTS;
-    if (strcmp(category, "Drinks") == 0) return FILE_DRINKS;
-    return NULL;  // Invalid category
-}
-
 // Load menu items from file
 int LoadMenuFromFile(const char* filename) {
-    FILE* file = fopen(filename, "r");
-    if (!file) {
-        printf("Error opening file: %s\n", filename);  // Debug print
+    FILE* file;
+    if (fopen_s(&file, filename, "r") != 0) {
+        printf("Error opening file: %s\n", filename);
         return 0;  // File not found
     }
 
     menuItemCount = 0;
-    while (fscanf(file, "%d,%49[^,],%249[^,],%f,%19[^\n]",
+    while (fscanf_s(file, "%d,%49[^,],%249[^,],%f,%19[^\n]",
         &menu[menuItemCount].itemID,
         menu[menuItemCount].itemName,
+        (unsigned int)sizeof(menu[menuItemCount].itemName),
         menu[menuItemCount].itemDescription,
+        (unsigned int)sizeof(menu[menuItemCount].itemDescription),
         &menu[menuItemCount].itemPrice,
-        menu[menuItemCount].itemCategory) == 5) {
-
-        printf("Item Loaded: ID = %d, Name = %s\n", menu[menuItemCount].itemID, menu[menuItemCount].itemName);
+        menu[menuItemCount].itemCategory,
+        (unsigned int)sizeof(menu[menuItemCount].itemCategory)) == 5) {
         menuItemCount++;
     }
 
-    printf("Loaded %d menu items from file.\n", menuItemCount);  // Debug print
     fclose(file);
     return 1;
 }
 
-
-
 // Save menu items to file
 int SaveMenuToFile(const char* filename) {
-    FILE* file = fopen(filename, "w");
-    if (!file) return 0;
+    FILE* file;
+    if (fopen_s(&file, filename, "w") != 0) {
+        printf("Error opening file: %s\n", filename);
+        return 0;
+    }
 
     for (int i = 0; i < menuItemCount; i++) {
         fprintf(file, "%d,%s,%s,%.2f,%s\n",
@@ -73,10 +64,10 @@ int AddMenuItem(char itemName[], char itemDescription[], float itemPrice, char i
 
     int newID = (menuItemCount == 0) ? 1 : menu[menuItemCount - 1].itemID + 1;
     menu[menuItemCount].itemID = newID;
-    strcpy(menu[menuItemCount].itemName, itemName);
-    strcpy(menu[menuItemCount].itemDescription, itemDescription);
+    strcpy_s(menu[menuItemCount].itemName, sizeof(menu[menuItemCount].itemName), itemName);
+    strcpy_s(menu[menuItemCount].itemDescription, sizeof(menu[menuItemCount].itemDescription), itemDescription);
     menu[menuItemCount].itemPrice = itemPrice;
-    strcpy(menu[menuItemCount].itemCategory, itemCategory);
+    strcpy_s(menu[menuItemCount].itemCategory, sizeof(menu[menuItemCount].itemCategory), itemCategory);
 
     menuItemCount++;
     return SaveMenuToFile(filename);
@@ -107,10 +98,10 @@ int UpdateMenuItem(int itemID, char itemName[], char itemDescription[], float it
 
     for (int i = 0; i < menuItemCount; i++) {
         if (menu[i].itemID == itemID) {
-            strcpy(menu[i].itemName, itemName);
-            strcpy(menu[i].itemDescription, itemDescription);
+            strcpy_s(menu[i].itemName, sizeof(menu[i].itemName), itemName);
+            strcpy_s(menu[i].itemDescription, sizeof(menu[i].itemDescription), itemDescription);
             menu[i].itemPrice = itemPrice;
-            strcpy(menu[i].itemCategory, itemCategory);
+            strcpy_s(menu[i].itemCategory, sizeof(menu[i].itemCategory), itemCategory);
             return SaveMenuToFile(filename);
         }
     }
@@ -149,34 +140,13 @@ void CreateMenuFileIfNotExists() {
     const char* filenames[] = { FILE_APPETIZERS, FILE_MAIN_COURSE, FILE_DESSERTS, FILE_DRINKS };
 
     for (int i = 0; i < 4; i++) {
-        FILE* file = fopen(filenames[i], "r");
-
-        // If the file does not exist, create it with default items
-        if (!file) {
-            file = fopen(filenames[i], "w");
-            if (!file) {
+        FILE* file;
+        if (fopen_s(&file, filenames[i], "r") != 0) {
+            // If the file does not exist, create it with default items
+            if (fopen_s(&file, filenames[i], "w") != 0) {
                 printf("Error creating menu file: %s\n", filenames[i]);
                 continue;
             }
-
-            // Add default items based on category
-            if (strcmp(filenames[i], FILE_APPETIZERS) == 0) {
-                fprintf(file, "1,Samosa,Crispy fried pastry stuffed with spicy potatoes,2.50,Appetizers\n");
-                fprintf(file, "2,Spring Rolls,Vegetable-stuffed crispy rolls,3.00,Appetizers\n");
-            }
-            else if (strcmp(filenames[i], FILE_MAIN_COURSE) == 0) {
-                fprintf(file, "3,Butter Chicken,Creamy tomato-based chicken curry,12.00,Main Course\n");
-                fprintf(file, "4,Chow Mein,Stir-fried noodles with vegetables and meat,10.00,Main Course\n");
-            }
-            else if (strcmp(filenames[i], FILE_DESSERTS) == 0) {
-                fprintf(file, "5,Gulab Jamun,Deep-fried milk dumplings in sugar syrup,5.00,Desserts\n");
-                fprintf(file, "6,Tiramisu,Italian coffee-flavored dessert,6.50,Desserts\n");
-            }
-            else if (strcmp(filenames[i], FILE_DRINKS) == 0) {
-                fprintf(file, "7,Mango Lassi,Traditional Indian yogurt drink,4.99,Drinks\n");
-                fprintf(file, "8,Masala Chai,Spiced Indian tea,2.99,Drinks\n");
-            }
-
             fclose(file);
         }
         else {

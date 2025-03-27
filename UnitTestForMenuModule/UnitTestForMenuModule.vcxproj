@@ -226,6 +226,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Project II\menu.c" />
+    <ClCompile Include="..\Project II\menu_customer.c" />
+    <ClCompile Include="..\Project II\menu_staff.c" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>

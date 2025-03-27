@@ -24,6 +24,12 @@
     <ClCompile Include="..\Project II\menu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Project II\menu_customer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project II\menu_staff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

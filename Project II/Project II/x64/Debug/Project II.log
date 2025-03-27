@@ -1,7 +1,6 @@
 ﻿  main.c
-C:\Users\birendradeuba\source\repos\Last one\Project II\main.c(66,40): warning C4013: 'GetCategoryFile' undefined; assuming extern returning int
-C:\Users\birendradeuba\source\repos\Last one\Project II\main.c(66,40): warning C4047: 'function': 'const char *' differs in levels of indirection from 'int'
-C:\Users\birendradeuba\source\repos\Last one\Project II\main.c(66,40): warning C4024: 'RemoveMenuItem': different types for formal and actual parameter 2
-C:\Users\birendradeuba\source\repos\Last one\Project II\main.c(94,88): warning C4047: 'function': 'const char *' differs in levels of indirection from 'int'
-C:\Users\birendradeuba\source\repos\Last one\Project II\main.c(94,88): warning C4024: 'UpdateMenuItem': different types for formal and actual parameter 6
+  menu.c
+  menu_customer.c
+  menu_staff.c
+  Generating Code...
   Project II.vcxproj -> C:\Users\birendradeuba\source\repos\Last one\Project II\x64\Debug\Project II.exe

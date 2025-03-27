@@ -11,37 +11,42 @@ namespace UnitTestForMenuModule
     TEST_CLASS(UnitTestForMenuModule)
     {
     public:
+
+        // Test Add Menu Item
         TEST_METHOD(TestAddMenuItem)
         {
             int result = AddMenuItem("Burger", "Juicy beef burger", (float)10.99, "Main Course");
             Assert::AreEqual(1, result);
         }
 
+        // Test Remove Menu Item
         TEST_METHOD(TestRemoveMenuItem)
         {
             AddMenuItem("Fries", "Crispy fries", (float)4.99, "Appetizers");
             int itemID = menu[0].itemID;
-            int result = RemoveMenuItem(itemID, FILE_APPETIZERS); // Provide the filename
+            int result = RemoveMenuItem(itemID, FILE_APPETIZERS);  // Provide the filename
             Assert::AreEqual(1, result);
         }
 
+        // Test Load Menu From File
         TEST_METHOD(TestLoadMenuFromFile)
         {
             // Ensure the menu file exists with default items
             CreateMenuFileIfNotExists();
 
-            int result = LoadMenuFromFile(FILE_APPETIZERS); // Provide the filename
+            int result = LoadMenuFromFile(FILE_APPETIZERS);  // Provide the filename
             Assert::AreEqual(1, result);
         }
 
-
+        // Test Save Menu To File
         TEST_METHOD(TestSaveMenuToFile)
         {
             AddMenuItem("Pizza", "Cheesy pizza", (float)12.99, "Main Course");
-            int result = SaveMenuToFile(FILE_MAIN_COURSE); // Provide the filename
+            int result = SaveMenuToFile(FILE_MAIN_COURSE);  // Provide the filename
             Assert::AreEqual(1, result);
         }
 
+        // Test Edge Case for Adding Menu Item
         TEST_METHOD(TestEdgeCaseAddItem)
         {
             menuItemCount = 0;
@@ -56,6 +61,7 @@ namespace UnitTestForMenuModule
             Assert::AreEqual(0, result);  // Should fail due to empty category
         }
 
+        // Test Full Menu and Handling Overflow
         TEST_METHOD(TestFullMenu)
         {
             menuItemCount = 0;
@@ -69,11 +75,12 @@ namespace UnitTestForMenuModule
             Assert::AreEqual(MAX_MENU_ITEMS, menuItemCount);
 
             int result = AddMenuItem("Overflow Item", "This should not be added", (float)9.99, "Main Course");
-            Assert::AreEqual(0, result);
+            Assert::AreEqual(0, result);  // Should fail as the menu is full
 
             Assert::AreEqual(MAX_MENU_ITEMS, menuItemCount);
         }
 
+        // Test Updating Menu Item
         TEST_METHOD(TestUpdateMenuItem)
         {
             AddMenuItem("Pasta", "Delicious pasta", (float)8.99, "Main Course");
@@ -87,6 +94,7 @@ namespace UnitTestForMenuModule
             Assert::AreEqual(10.99f, menu[0].itemPrice);
         }
 
+        // Test Get Menu Item by Category
         TEST_METHOD(TestGetMenuItemByCategory)
         {
             AddMenuItem("Soup", "Hot vegetable soup", (float)4.99, "Appetizers");
@@ -97,10 +105,11 @@ namespace UnitTestForMenuModule
             Assert::AreEqual(1, result);
         }
 
+        // Test Remove Menu Item that Doesn't Exist
         TEST_METHOD(TestRemoveMenuItemNotFound)
         {
-            int result = RemoveMenuItem(999, FILE_APPETIZERS); // Provide the filename
-            Assert::AreEqual(0, result);
+            int result = RemoveMenuItem(999, FILE_APPETIZERS);  // Provide the filename
+            Assert::AreEqual(0, result);  // Item with ID 999 should not be found
         }
     };
 }

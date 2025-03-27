@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="menu.c" />
+    <ClCompile Include="menu_customer.c" />
+    <ClCompile Include="menu_staff.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
