@@ -76,7 +76,7 @@ void navigateSelection(int selection) {
         break;
     case 4:
         printf("\nThank you for visiting Byte and Bite! Have a great day!\n");
-        exit(0); //Proper exit added
+        exit(0); //Proper exit 
         break;
     default:
         printf("\nUnexpected error occurred.\n");
