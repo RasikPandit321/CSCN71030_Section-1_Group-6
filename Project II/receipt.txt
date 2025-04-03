@@ -1,0 +1,8 @@
+===== Receipt =====
+Pani Puri x1 - $7.99 each
+
+Subtotal: $15.49
+Discount: $1.12
+Tax (10%): $1.55
+Total: $15.92
+===================

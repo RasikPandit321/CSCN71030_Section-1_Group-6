@@ -1,0 +1,23 @@
+20,Butter Chicken,Creamy tomato-based chicken curry,14.99,Main Course
+21,Chicken Tikka Masala,Spiced tomato-based creamy chicken,14.99,Main Course
+22,Kadai Chicken,Chicken with bell peppers & onions,14.99,Main Course
+23,Chettinad Chicken,South Indian spicy chicken curry,14.99,Main Course
+24,Chicken Curry,Classic chicken in rich spiced gravy,13.99,Main Course
+25,Lamb Curry,Tender lamb slow-cooked in spices,15.99,Main Course
+26,Egg Curry,Hard-boiled eggs in spicy tomato gravy,11.99,Main Course
+27,Palak Paneer,Creamy spinach with paneer cubes,13.99,Main Course
+28,Paneer Makhni,Butter paneer in rich tomato sauce,14.99,Main Course
+29,Shahi Paneer,Creamy cashew-based paneer curry,15.99,Main Course
+30,Matar Paneer,Paneer and peas in tomato gravy,13.99,Main Course
+31,Dal Makhni,Slow-cooked black lentils in butter,14.99,Main Course
+32,Chana Masala,Spiced chickpea curry,11.99,Main Course
+33,Aloo Gobi,Potatoes & cauliflower in mild spices,12.99,Main Course
+34,Mix Vegetable,Seasonal vegetables cooked in spices,10.99,Main Course
+35,Vindaloo,Spicy & tangy curry (Veg/Chicken/Lamb),16.99,Main Course
+36,Biryani,Fragrant rice with spices (Veg/Chicken/Lamb),15.99,Main Course
+37,Roti,2 pieces of soft whole wheat bread,4.99,Main Course
+38,Lachha Paratha,2 pieces of flaky layered bread,5.99,Main Course
+39,Bhatura,1 deep-fried fluffy bread,2.99,Main Course
+40,Steam Rice,Fluffy plain basmati rice,3.99,Main Course
+41,Peas Pulao,Basmati rice with peas & spices,6.99,Main Course
+42,Veg Pulao,Fragrant rice with mixed vegetables,8.99,Main Course

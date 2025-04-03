@@ -15,48 +15,57 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="UnitTestForIntegrating.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="order.c">
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="billing.c">
+    <ClCompile Include="..\Project II\billing.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu.c">
+    <ClCompile Include="..\Project II\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu_customer.c">
+    <ClCompile Include="..\Project II\menu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu_staff.c">
+    <ClCompile Include="..\Project II\menu_customer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="welcome.c">
+    <ClCompile Include="..\Project II\menu_staff.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="order_flow.c">
+    <ClCompile Include="..\Project II\order.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project II\order_flow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Project II\welcome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="order.h">
+    <ClInclude Include="..\Project II\billing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="billing.h">
+    <ClInclude Include="..\Project II\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
+    <ClInclude Include="..\Project II\menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="welcome.h">
+    <ClInclude Include="..\Project II\order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="order_flow.h">
+    <ClInclude Include="..\Project II\order_flow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Project II\welcome.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,5 @@
+43,Mango Lassi,Traditional Indian yogurt drink,4.99,Drinks
+44,Masala Chai,Spiced Indian tea,2.99,Drinks
+45,Lemonade,Freshly squeezed lemon juice,3.99,Drinks
+46,Cold Coffee,Blended coffee with ice cream,5.99,Drinks
+47,Mango Juice,Freshly pressed mango juice,4.49,Drinks

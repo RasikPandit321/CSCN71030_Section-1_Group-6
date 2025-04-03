@@ -15,48 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="test_order.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="order.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="billing.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menu_customer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menu_staff.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="welcome.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="order_flow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="billing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="welcome.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="order_flow.h">
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

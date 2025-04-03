@@ -1,0 +1,19 @@
+1,Pani Puri,Dahi Puri with spicy tangy water,7.99,Appetizers
+2,Onion Rings,Crispy golden onion rings,7.99,Appetizers
+3,Chole Samosa Chaat,Samosa topped with tangy chickpea curry,7.99,Appetizers
+4,Samosa,3 crispy pastries stuffed with spiced potatoes,4.99,Appetizers
+5,Spring Roll,6 crispy vegetable-stuffed rolls,4.99,Appetizers
+6,Veg Pakoda,Deep-fried vegetable fritters,5.99,Appetizers
+7,French Fries,Deep-fried potato sticks,7.99,Appetizers
+8,Veg Fried Wonton,10 crispy dumplings,7.99,Appetizers
+9,Aloo Tikki,Golden-fried potato patties,3.99,Appetizers
+10,Aloo Tikki Chaat,Crispy potato patties with chutneys,7.99,Appetizers
+11,Pepper Chicken,Juicy chicken stir-fried with spices,16.99,Appetizers
+12,Salt & Pepper Wings,1 lb crispy wings with bold flavors,15.99,Appetizers
+13,Dragon Chicken,Spicy-sweet crispy chicken strips,15.99,Appetizers
+14,Chicken Lollipop,6 deep-fried drumsticks,13.99,Appetizers
+15,Salt & Pepper Lollipop,6 crispy chicken lollipops,13.99,Appetizers
+16,Wings,Hot/Buffalo/Medium (1 lb),10.99,Appetizers
+17,Fish Pakoda,1 lb crispy fish bites,10.99,Appetizers
+18,Fish and Chips,Golden-fried fish with fries,12.99,Appetizers
+19,Chicken Pakoda,10 deep-fried crispy chicken pieces,11.99,Appetizers
